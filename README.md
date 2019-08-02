@@ -153,13 +153,65 @@ a. Create a protocol called `Vehicle` with two requirements:
 - a nonsettable `numberOfWheels` property of type Int,
 - a function called drive().
 
+```swift
+protocol Vehicle {
+var numberOfWheels: Int { get }
+
+func drive()
+}
+```
+
 b. Define a `Car` struct that implements the `Vehicle` protocol. `numberOfWheels` should return a value of 4,
 and drive() should print "Vroom, vroom!" Create an instance of `Car`, print its number of wheels,
 then call drive().
 
+```swift
+protocol Vehicle {
+var numberOfWheels: Int { get }
+
+func drive()
+}
+
+struct Car: Vehicle {
+let numberOfWheels: Int = 4
+
+func drive() {
+print("Vroom, vroom")
+}
+
+
+}
+
+var myCar = Car()
+print("My car has \(myCar.numberOfWheels) wheels and it goes")
+myCar.drive()
+```
+
 c. Define a Bike struct that implements the `Vehicle` protocol. `numberOfWheels` should return a value of 2,
 and drive() should print "Begin pedaling!". Create an instance of Bike, print its number of wheels,
 then call drive().
+
+```swift
+protocol Vehicle {
+var numberOfWheels: Int { get }
+
+func drive()
+}
+
+struct Bike: Vehicle {
+let numberOfWheels: Int = 2
+
+func drive() {
+print("Begin pedaling!")
+}
+
+
+}
+
+var myBike = Bike()
+print("My bike has \(myBike.numberOfWheels) wheels and to get it moving")
+myBike.drive()
+```
 
 </br> </br>
 
@@ -178,6 +230,25 @@ protocol Bird {
 protocol Flyable {
  var airspeedVelocity: Double { get }
 }
+
+struct Penguin: Flyable, Bird {
+var airspeedVelocity: Double
+var name: String
+var canFly: Bool
+var hasFlippers: Bool = true
+var isAquatic: Bool = true
+
+}
+
+struct Eagle: Flyable, Bird {
+var airspeedVelocity: Double
+var name: String
+var canFly: Bool
+var hasFeathers: Bool = true
+var isAmericanAsFuck: Bool = true
+
+
+}
 ```
 
 </br> </br>
@@ -185,6 +256,13 @@ protocol Flyable {
 ## Question 4
 
 a. Create a protocol called `Transformation`.  The protocol should specify a mutating method called transform
+
+```swift
+protocol Transformation {
+
+mutating func transform()
+}
+```
 
 b. Make an enum called `SuperHero` that conforms to `Transformation` with cases `notHulk` and `hulk`
 
@@ -204,6 +282,31 @@ bruceBanner.transform() . // hulk
 bruceBanner.transform()  // notHulk
 ```
 
+```swift
+// Below includes PART B and PART C
+
+protocol Transformation {
+
+mutating func transform()
+}
+
+enum SuperHero: Transformation {
+case notHulk
+case hulk
+
+mutating func transform() {
+if self == .notHulk {
+self = .hulk
+}
+}
+}
+
+var bruceBanner = SuperHero.notHulk
+print(bruceBanner.self)
+bruceBanner.transform()
+print(bruceBanner.self)
+```
+
 </br> </br>
 
 
@@ -211,17 +314,159 @@ bruceBanner.transform()  // notHulk
 
 a. Create a protocol called `Communication`
 
+```swift
+protocol Communication {
+
+}
+```
+
 b. Give it a property called `message`, of type String, and assign it an explicit getter.
+
+```swift
+protocol Communication {
+var message: String { get }
+}
+```
 
 c. Create three Classes. `Cow`, `Dog`, `Cat`.
 
+```swift
+protocol Communication {
+var message: String { get }
+}
+
+class Dog {
+
+}
+
+class Cat {
+
+}
+
+class Cow {
+
+}
+```
+
 d. Have your three classes conform to `Communication`
+
+```swift
+protocol Communication {
+var message: String { get }
+}
+
+class Dog: Communication {
+var message: String
+
+
+}
+
+class Cat: Communication {
+var message: String
+
+
+}
+
+class Cow: Communication {
+var message: String
+
+
+}
+```
 
 e. `message` should return a unique message for each animal when talk is called.
 
+```swift
+protocol Communication {
+var message: String { get }
+}
+
+class Dog: Communication {
+var message: String {return "woof woof"}
+
+
+}
+
+class Cat: Communication {
+var message: String {return "meow"}
+
+
+}
+
+class Cow: Communication {
+var message: String {return "moooo"}
+
+
+}
+```
+
 f. Put an instance of each of your classes in an array.
 
+```swift
+protocol Communication {
+var message: String { get }
+}
+
+class Dog: Communication {
+var message: String {return "woof woof"}
+
+
+}
+
+class Cat: Communication {
+var message: String {return "meow"}
+
+
+}
+
+class Cow: Communication {
+var message: String {return "moooo"}
+
+
+}
+
+let cow1 = Cow()
+let cat1 = Cat()
+let dog1 = Dog()
+
+let array: [Communication] = [cow1, cat1, dog1]
+```
+
 g. Iterate over the array and have them print their `message` property
+
+```swift
+protocol Communication {
+var message: String { get }
+}
+
+class Dog: Communication {
+var message: String {return "woof woof"}
+
+
+}
+
+class Cat: Communication {
+var message: String {return "meow"}
+
+
+}
+
+class Cow: Communication {
+var message: String {return "moooo"}
+
+
+}
+
+let cow1 = Cow()
+let cat1 = Cat()
+let dog1 = Dog()
+
+let array: [Communication] = [cow1, cat1, dog1]
+
+for animalNoise in array {
+print(animalNoise.message)
+}
+```
 
 
 ## Question 6
