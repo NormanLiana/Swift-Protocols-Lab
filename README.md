@@ -40,7 +40,7 @@ var hooman2 = Hooman(name: "Katie", age: 32)
 
 b. Make the `Human` class adopt the CustomStringConvertible protocol. Then print both of your previously initialized
 `Human` objects.
-```
+```swift
 class Human: CustomStringConvertible {
 var name: String
 var age: Int
